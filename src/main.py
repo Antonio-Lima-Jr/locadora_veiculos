@@ -28,7 +28,7 @@ while True:
         "1": lambda: locadora.cadastrar_veiculo(),
         "2": lambda: locadora.cadastrar_cliente(),
         "3": lambda: locadora.realizar_locacao(),
-        "4": "relatorio_locacao",
+        "4": lambda: locadora.relatorio_locacao(),
         "5": lambda: exit()
     }
     try:

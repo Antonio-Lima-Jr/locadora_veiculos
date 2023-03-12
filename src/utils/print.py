@@ -4,6 +4,8 @@ from rich.console import Console
 from rich.theme import Theme
 from rich.columns import Columns
 from rich.panel import Panel
+from models.cliente import Cliente
+from models.locacao import Locacao
 
 from models.veiculo import Veiculo
 
@@ -66,8 +68,29 @@ class Print:
         if len(veiculos) == 0:
             self.print_success("Nenhum veiculo cadastrado")
             return
-        veiculos_render = [Panel(veiculo.get_content(), expand=True) for veiculo in veiculos]
+        veiculos_render = [Panel(veiculo.get_content(), expand=True)
+                           for veiculo in veiculos]
         columns = Columns(veiculos_render, equal=True, align="right")
+        self.console.print(columns)
+
+    def print_todos_clientes(self, clientes: List[Cliente]):
+        self.print_title("Clientes cadastrados")
+        if len(clientes) == 0:
+            self.print_success("Nenhum cliente cadastrado")
+            return
+        clientes_render = [Panel(cliente.get_content(), expand=True)
+                           for cliente in clientes]
+        columns = Columns(clientes_render, equal=True, align="right")
+        self.console.print(columns)
+
+    def print_todas_locacoes(self, locacao: List[Locacao]):
+        self.print_title("Alugueis cadastrados")
+        if len(locacao) == 0:
+            self.print_success("Nenhuma locação cadastrada")
+            return
+        alugueis_render = [Panel(locacao.get_content(), expand=True)
+                           for locacao in locacao]
+        columns = Columns(alugueis_render, equal=True, align="right")
         self.console.print(columns)
 
     def input_veiculo(self):

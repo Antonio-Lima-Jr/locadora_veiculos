@@ -7,6 +7,9 @@ class Cliente:
     def __str__(self):
         return f"Nome: {self.nome} - CPF: {self.cpf} - RG: {self.rg}"
 
+    def get_content(self):
+        return f"Nome: {self.nome} - CPF: {self.cpf}"
+
 
 class ClienteBuilder:
     def __init__(self):

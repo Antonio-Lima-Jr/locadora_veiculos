@@ -11,7 +11,10 @@ class Locacao:
         self.valor = 0
 
     def __str__(self):
-        return f"ID: {self.id} - Cliente: {self.cliente} - Veículo: {self.veiculo} - Data de início: {self.data_inicio} - Data de fim: {self.dias_aluguel} - Valor: {self.valor}"
+        return f"ID: {self.id} - Cliente: {self.cliente}\n- Veículo: {self.veiculo} - Data de início: {self.data_inicio} - Data de fim: {self.dias_aluguel} - Valor: {self.valor}"
+
+    def get_content(self):
+        return f"- Cliente:\n{self.cliente}\n- Veículo:\n{self.veiculo}\n- Data de início: {self.data_inicio}\n- Dias de aluguel: {self.dias_aluguel}\n- Valor: {self.valor}"
 
 
 class LocacaoBuilder:

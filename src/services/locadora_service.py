@@ -9,7 +9,7 @@ from models.locacao import LocacaoBuilder
 class LocadoraService:
     def __init__(self):
         self.locadora: Locadora = Locadora()
-   
+
         self.print = Print()
 
     def inicializar_mock(self):
@@ -49,7 +49,7 @@ class LocadoraService:
             .set_cpf("123.456.789-10")\
             .set_rg("12.345.678-9")\
             .build()
-        
+
         cliente2 = ClienteBuilder()\
             .set_nome("Maria")\
             .set_cpf("123.456.789-11")\
@@ -181,5 +181,5 @@ class LocadoraService:
         self.print.print_success("Locação realizada com sucesso")
 
     def relatorio_locacao(self):
-        for locacao in self.locadora.locacoes:
-            print(locacao)
+        self.print.print_title("Relatório de locações")
+        self.print.print_todas_locacoes(self.locadora.locacoes)
