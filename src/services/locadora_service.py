@@ -1,4 +1,5 @@
 from models.carro import CarroBuilder
+from models.cliente import ClienteBuilder
 from utils.print import Print
 from models.locadora import Locadora
 
@@ -39,7 +40,8 @@ class LocadoraService:
         elif estaCadastrado == "y" or estaCadastrado == "Y":
             self.print.print_input("Digite a placa do veiculo")
             placa = input()
-            listVeiculo = [veiculo for veiculo in self.locadora.veiculos if veiculo.placa == placa]
+            listVeiculo = [
+                veiculo for veiculo in self.locadora.veiculos if veiculo.placa == placa]
             if len(listVeiculo) == 0:
                 self.print.print_error("Veiculo não encontrado")
                 return
@@ -59,10 +61,22 @@ class LocadoraService:
         else:
             self.print.print_error("Opção inválida")
 
-    
-
-    def cadastrar_cliente(self, cliente):
+    def cadastrar_cliente(self):
+        self.print.print_title("Cadastrar cliente")
+        nome, cpf, rg = self.print.input_cliente()
+        if len(self.locadora.clientes) != 0:
+            listCliente = [
+                cliente for cliente in self.locadora.clientes if cliente.cpf == cpf]
+            if len(listCliente) != 0:
+                self.print.print_error("Cliente já cadastrado")
+                return
+        cliente = ClienteBuilder()\
+            .set_nome(nome)\
+            .set_cpf(cpf)\
+            .set_rg(rg)\
+            .build()
         self.locadora.clientes.append(cliente)
+        self.print.print_success("Cliente cadastrado com sucesso")
 
     def realizar_locacao(self, locacao):
         self.locadora.locacoes.append(locacao)

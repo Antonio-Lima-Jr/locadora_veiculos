@@ -1,14 +1,13 @@
 class Cliente:
-    def __init__(self, nome, cpf, rg, carros):
+    def __init__(self, nome, cpf, rg):
         self.nome = nome
         self.cpf = cpf
         self.rg = rg
-        self.carros = carros
 
 
 class ClienteBuilder:
     def __init__(self):
-        self.cliente = Cliente("", "", "", [])
+        self.cliente = Cliente("", "", "")
 
     def set_nome(self, nome):
         self.cliente.nome = nome
@@ -20,10 +19,6 @@ class ClienteBuilder:
 
     def set_rg(self, rg):
         self.cliente.rg = rg
-        return self
-
-    def add_carro(self, carro):
-        self.cliente.carros.append(carro)
         return self
 
     def build(self):

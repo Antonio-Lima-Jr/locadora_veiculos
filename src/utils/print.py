@@ -87,3 +87,12 @@ class Print:
         self.print_input("Digite a placa do veiculo")
         placa = input()
         return categoria,transmissao,combustivel,marca,modelo,ano,placa
+    
+    def input_cliente(self):
+        self.print_input("Digite o nome do cliente")
+        nome = input()
+        self.print_input("Digite o CPF do cliente")
+        cpf = input()
+        self.print_input("Digite o RG do cliente")
+        rg = input()
+        return nome,cpf,rg
