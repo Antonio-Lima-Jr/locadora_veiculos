@@ -11,7 +11,7 @@ class Carro:
 
 class CarroBuilder:
     def __init__(self):
-        self.carro = Carro("", "", "", "", "")
+        self.carro = Carro("", "", "", "", "", "", "")
 
     def set_categoria(self, categoria):
         self.carro.categoria = categoria
