@@ -1,5 +1,9 @@
+autopep8==2.0.2
 markdown-it-py==2.2.0
 mdurl==0.1.2
+pycodestyle==2.10.0
 Pygments==2.14.0
 rich==13.3.2
+tomli==2.0.1
 typing-extensions==4.5.0
+unique-id==1.0.1

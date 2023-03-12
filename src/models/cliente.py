@@ -4,6 +4,9 @@ class Cliente:
         self.cpf = cpf
         self.rg = rg
 
+    def __str__(self):
+        return f"Nome: {self.nome} - CPF: {self.cpf} - RG: {self.rg}"
+
 
 class ClienteBuilder:
     def __init__(self):

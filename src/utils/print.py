@@ -1,8 +1,11 @@
 
+from typing import List
 from rich.console import Console
 from rich.theme import Theme
 from rich.columns import Columns
 from rich.panel import Panel
+
+from models.veiculo import Veiculo
 
 
 class Print:
@@ -54,23 +57,19 @@ class Print:
         self.console.print(
             success,
             style="success",
-            justify="left",
+            justify="center",
             emoji=True,
         )
 
-    def print_todos_veiculos(self, veiculos):
+    def print_todos_veiculos(self, veiculos: List[Veiculo]):
         self.print_title("Veiculos cadastrados")
         if len(veiculos) == 0:
             self.print_success("Nenhum veiculo cadastrado")
             return
-        veiculos_render = [Panel(self.get_content(
-            veiculo), expand=True) for veiculo in veiculos]
+        veiculos_render = [Panel(veiculo.get_content(), expand=True) for veiculo in veiculos]
         columns = Columns(veiculos_render, equal=True, align="right")
         self.console.print(columns)
 
-    def get_content(self, veiculo):
-        return f"Marca: {veiculo.marca}\nModelo: {veiculo.modelo}\nAno: {veiculo.ano}\nPlaca: {veiculo.placa}"
-    
     def input_veiculo(self):
         self.print_input("Digite a categoria do veiculo")
         categoria = input()
@@ -86,8 +85,10 @@ class Print:
         ano = input()
         self.print_input("Digite a placa do veiculo")
         placa = input()
-        return categoria,transmissao,combustivel,marca,modelo,ano,placa
-    
+        self.print_input("Digite o valor da diaria do veiculo")
+        valor_diaria = input()
+        return categoria, transmissao, combustivel, marca, modelo, int(ano), placa, int(valor_diaria)
+
     def input_cliente(self):
         self.print_input("Digite o nome do cliente")
         nome = input()
@@ -95,4 +96,4 @@ class Print:
         cpf = input()
         self.print_input("Digite o RG do cliente")
         rg = input()
-        return nome,cpf,rg
+        return nome, cpf, rg

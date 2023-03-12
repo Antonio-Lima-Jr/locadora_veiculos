@@ -5,6 +5,7 @@ from services.locadora_service import LocadoraService
 console = Print()
 init = True
 locadora = LocadoraService()
+locadora.inicializar_mock()
 
 while True:
     locadoraName = "Locadora Boa Viagem"
@@ -26,7 +27,7 @@ while True:
     options = {
         "1": lambda: locadora.cadastrar_veiculo(),
         "2": lambda: locadora.cadastrar_cliente(),
-        "3": "realizar_locacao",
+        "3": lambda: locadora.realizar_locacao(),
         "4": "relatorio_locacao",
         "5": lambda: exit()
     }
