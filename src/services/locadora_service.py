@@ -30,18 +30,30 @@ class LocadoraService:
             .build()
 
         carro2 = VeiculoBuilder()\
-            .set_categoria("Sedan")\
+            .set_categoria("Sport")\
+            .set_transmissao("Manual")\
+            .set_combustivel("Gasolina")\
+            .set_marca("Chevrolet")\
+            .set_modelo("Camaro")\
+            .set_ano(2018)\
+            .set_placa("OPG-1234")\
+            .set_valor_diaria(300)\
+            .build()
+
+        carro3 = VeiculoBuilder()\
+            .set_categoria("SUV")\
             .set_transmissao("Automática")\
             .set_combustivel("Gasolina")\
             .set_marca("Chevrolet")\
-            .set_modelo("Cruze")\
+            .set_modelo("Tracker")\
             .set_ano(2018)\
-            .set_placa("OPG-1234")\
+            .set_placa("ABC-1234")\
             .set_valor_diaria(150)\
             .build()
 
         self.locadora.veiculos.append(carro1)
         self.locadora.veiculos.append(carro2)
+        self.locadora.veiculos.append(carro3)
 
     def mock_clientes(self):
         cliente1 = ClienteBuilder()\
@@ -55,9 +67,23 @@ class LocadoraService:
             .set_cpf("123.456.789-11")\
             .set_rg("12.345.679-9")\
             .build()
+            
+        cliente3 = ClienteBuilder()\
+            .set_nome("José")\
+            .set_cpf("123.456.789-12")\
+            .set_rg("12.345.680-9")\
+            .build()
+        
+        cliente4 = ClienteBuilder()\
+            .set_nome("Joana")\
+            .set_cpf("123.456.789-13")\
+            .set_rg("12.345.681-9")\
+            .build()
 
         self.locadora.clientes.append(cliente1)
         self.locadora.clientes.append(cliente2)
+        self.locadora.clientes.append(cliente3)
+        self.locadora.clientes.append(cliente4)
 
     def mock_locacoes(self):
         locacao1 = LocacaoBuilder()\
@@ -167,6 +193,9 @@ class LocadoraService:
             return
         self.print.print_success("Veiculo encontrado")
         veiculo = listVeiculo[0]
+        if veiculo.placa in [locacao.veiculo.placa for locacao in self.locadora.locacoes]:
+            self.print.print_error("Veiculo já alugado")
+            return
         self.print.print_input("Digite a data de início da locação")
         data_inicio = input()
         self.print.print_input("Quantos dias deseja alugar?")
